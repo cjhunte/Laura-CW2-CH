@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="04767ccf-7c68-4eae-8ac3-e120f34551b8" name="Changes" comment="start of CW2 rep for 12th of may">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Company/BussinessAccount.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Company/CustomerAccounts.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Company/PersonalCustomerAccounts.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Company/Testaccounts.java" afterDir="false" />
+    <list default="true" id="04767ccf-7c68-4eae-8ac3-e120f34551b8" name="Changes" comment="added main structure">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -62,12 +57,20 @@
       <option name="project" value="LOCAL" />
       <updated>1683015904468</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="added main structure">
+      <created>1683034393413</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1683034393413</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="start of CW2 rep for 12th of may" />
-    <option name="LAST_COMMIT_MESSAGE" value="start of CW2 rep for 12th of may" />
+    <MESSAGE value="added main structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="added main structure" />
   </component>
 </project>
