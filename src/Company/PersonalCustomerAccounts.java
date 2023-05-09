@@ -4,9 +4,9 @@ public class PersonalCustomerAccounts extends CustomerAccounts
 {
 
 
-   public static int getPerAccNum (int AccRefNo)
+   public static int getPerAccNum (int pAccRefNo)
    {
-      return AccRefNo = AccRefNo + 1;
+      return pAccRefNo = pAccRefNo + 1;
    }
    public PersonalCustomerAccounts()
    {

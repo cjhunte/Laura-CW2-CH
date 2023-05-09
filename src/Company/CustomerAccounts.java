@@ -1,14 +1,19 @@
 package Company;
 
 
+
+
+
 abstract class CustomerAccounts
 {
+
+
    public static String POUND = "\u00A3";
    private String name;
    private int AccRefNo;
 
    private String Address;
-   private Double balance = 00.00;
+   private double balance = 00.00;
 
    public CustomerAccounts()
    {
@@ -67,7 +72,7 @@ abstract class CustomerAccounts
 
    public String tostring()
    {
-      return "Customer" + AccRefNo + "is called" + name + "\n" +"and lives at" + Address;
+      return "Customer number " + AccRefNo + " is called " + name + " \n " +" and lives at " + Address;
    }
    public String DisplayBalance()
    {

@@ -47,7 +47,7 @@ public class BussinessAccount extends CustomerAccounts
    }
    public String tostring()
    {
-      return (super.tostring() + "Monthly Pay:  £" + df.format(applyDiscount(balance)) + "\n");
+      return (super.tostring() + " Monthly Pay:  £" + df.format(applyDiscount(balance)) + "\n");
    }
    protected String getstatus()
    {
