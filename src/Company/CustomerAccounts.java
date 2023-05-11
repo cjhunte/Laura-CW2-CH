@@ -28,9 +28,9 @@ abstract class CustomerAccounts
    }
 
 
-   public void getAccRefNo(int Newref)
+   protected void getAccRefNo(int Newref)
    {
-     AccRefNo = Newref;
+     this.AccRefNo = Newref;
    }
    protected String getName()
    {
@@ -46,9 +46,9 @@ abstract class CustomerAccounts
    {
       this.name = Newname;
    }
-   public void setnum(int NewAccNum)
+   public void setaccnum(int NewAccNum)
    {
-      this.AccRefNo = NewAccNum;
+      AccRefNo = NewAccNum + 1;
    }
 
    public void setAddress(String nAddress)
@@ -68,12 +68,12 @@ abstract class CustomerAccounts
    }
 
    protected void welcome(){
-      System.out.println("welcome to the" + getstatus() + "class");
+      System.out.println("Welcome to the " + getstatus() + " menu");
    }
 
    public String tostring()
    {
-      return "Customer number " + AccRefNo + " is called " + name + " \n " +" and lives at " + Address;
+      return "******************************"+"\n"+"Customer number " + AccRefNo + " is called " + name+ "\n"+"and lives at " + Address;
    }
    public String DisplayBalance()
    {

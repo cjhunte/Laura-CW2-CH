@@ -5,20 +5,15 @@ public class PersonalCustomerAccounts extends CustomerAccounts
 
 
 
-   @Override
-   public void getAccRefNo()
-   {
-      super.getAccRefNo(
 
-              int 
-
-      );
+   public void welcome() {
+     super.welcome();
    }
-/*
-   static int getAccRefNo (int pAccRefNo)
+
+   public static int getPerAccNum (int pAccRefNo, int NewAccNum)
    {
-      return pAccRefNo + 1;
-   }*/
+      return pAccRefNo = NewAccNum + 1;
+   }
    public PersonalCustomerAccounts()
    {
       super();
@@ -30,13 +25,11 @@ public class PersonalCustomerAccounts extends CustomerAccounts
    }
 
    @Override
-   protected void welcome() {
-      super.welcome();
-   }
+
 
    protected String getstatus()
    {
-      return ("Personal Accounts");
+      return ("personal accounts");
    }
 
 }

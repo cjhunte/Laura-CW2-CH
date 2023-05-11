@@ -7,7 +7,6 @@ public class BussinessAccount extends CustomerAccounts
 {
    private double Discount = 0.1;
    private double balance = 00.00;
-   public static int BusAccNum = 2001;
    DecimalFormat df = new DecimalFormat("0,000.00");
 
    public BussinessAccount()
@@ -19,9 +18,9 @@ public class BussinessAccount extends CustomerAccounts
    {
       super(Newname, NewAccNum , nAddress);
    }
-   public static int getBusAccNum (int bAccRefNo)
+   public static int getBusAccNum (int bAccRefNo, int NaccNum)
    {
-      return bAccRefNo = bAccRefNo + 1;
+      return NaccNum = bAccRefNo + 1;
    }
 
 
