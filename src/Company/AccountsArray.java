@@ -57,8 +57,7 @@ public class AccountsArray
        return AccRefNo;
     }//findPropertyByStreet
 
-    // Method to find properties by their town
-    // Return a range of indices or an empty list if none are found
+
 
 }
 

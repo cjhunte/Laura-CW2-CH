@@ -4,10 +4,21 @@ public class PersonalCustomerAccounts extends CustomerAccounts
 {
 
 
-   public static int getPerAccNum (int pAccRefNo)
+
+   @Override
+   public void getAccRefNo()
    {
-      return pAccRefNo = pAccRefNo + 1;
+      super.getAccRefNo(
+
+              int 
+
+      );
    }
+/*
+   static int getAccRefNo (int pAccRefNo)
+   {
+      return pAccRefNo + 1;
+   }*/
    public PersonalCustomerAccounts()
    {
       super();
@@ -18,9 +29,14 @@ public class PersonalCustomerAccounts extends CustomerAccounts
       super(Newname,  NewAccNum, nAddress);
    }
 
+   @Override
+   protected void welcome() {
+      super.welcome();
+   }
+
    protected String getstatus()
    {
-      return ("Personal");
+      return ("Personal Accounts");
    }
 
 }

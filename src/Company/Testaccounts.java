@@ -5,9 +5,11 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class Testaccounts
 {
 static Scanner scany = new Scanner(System.in);
+
 
 public static String gettext(String message)
 {
@@ -16,21 +18,18 @@ public static String gettext(String message)
    return scany.next();
 
 }
-   static int pAccRefNo = 1000,bAccRefNo = 2000;
+
+
+
+
+/*
    public static void main(String[]args)
    {
 
 
-      AccountsArray myarray = new AccountsArray();
 
 
 
-      DecimalFormat df = new DecimalFormat("0,000.00");
-
-      String Newname, nAddress;
-      double balance, pay;
-      int hours, choice ,choice2 = -1,choice3,NewAccNum;
-      boolean stats = false;
 
 
 
@@ -138,11 +137,21 @@ public static String gettext(String message)
             choice3 = scany.nextInt();
 
 
-            switch
-
-            (choice3)
+            switch (choice3)
             {
             case 1:
+            {
+              saleamount = Double.parseDouble(gettext("please enter the total amount of the sale. \n"));
+
+
+            }
+
+
+            case 2:
+            {
+
+            }
+
 
 
 
@@ -167,10 +176,97 @@ public static String gettext(String message)
 
 
       } while (choice != -1);
+*/
+static int pAccRefNo = 1000,bAccRefNo = 2000;
+
+   public static void main(String[]args)
+   {
+   String Newname, nAddress;
+   double balance, pay, saleamount;
+   int hours, choice ,choice2 = -1,choice3,NewAccNum;
+   boolean stats = false;
+   AccountsArray myarray = new AccountsArray();
+   DecimalFormat df = new DecimalFormat("0,000.00");
 
 
 
-   }
+   do {
+
+      choice = Integer.parseInt(gettext("Is your account business or personal. "+"Please press one for personal and 2 for Business\n"));
+
+
+      switch (choice)
+      {
+
+
+         case 1://
+         {
+
+
+
+            do {
+            System.out.print("please select a choice from the menu\n");
+            System.out.print("1 - create a new account\n");
+            System.out.print("2 - search for an existing account\n");
+            System.out.print("0 - exit the terminal\n");
+
+            choice2 = scany.nextInt();
+
+
+               switch (choice2)
+               {
+
+                  case 1:
+                  {
+
+
+                     Newname = gettext("Customer name\n");///takes customer name input
+
+                     NewAccNum = PersonalCustomerAccounts.getAccRefNo();///provides the user with an account number upon creation
+                     System.out.print(NewAccNum + "\n");
+
+                     nAddress = gettext("customer address\n");///takes the customers address and stores as string value
+
+                     PersonalCustomerAccounts newPCustomer = new PersonalCustomerAccounts(Newname, NewAccNum, nAddress);
+                     myarray.insertAcc(newPCustomer);
+                     newPCustomer.welcome();
+                  }
+
+                  case 2:
+                  {
+
+                  }
+
+                     default:
+                     {
+                        if ((choice2 < 0) ||(choice2 > 2))
+                        System.out.println("Selection invalid");
+                     }
+               }
+
+               }while (choice2 != 0);
+
+            }
+            case 2:
+            {
+            System.out.print("please select a choice from the menu\n");
+            System.out.print("1 - create a new account\n");
+            System.out.print("2 - search for an existing account\n");
+            System.out.print("0 - exit the terminal\n");
+
+
+            }
+            default:
+               if ((choice < 0) || (choice > 2))
+                  System.out.println("Selection invalid");
+
+
+            }
+            }while (choice != 0);
+
+
+            }
+
 
 
 }

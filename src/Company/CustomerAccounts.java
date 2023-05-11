@@ -10,7 +10,7 @@ abstract class CustomerAccounts
 
    public static String POUND = "\u00A3";
    private String name;
-   private int AccRefNo;
+   private int AccRefNo = 0000;
 
    private String Address;
    private double balance = 00.00;
@@ -28,9 +28,9 @@ abstract class CustomerAccounts
    }
 
 
-   protected int getAccRefNo()
+   public void getAccRefNo(int Newref)
    {
-      return AccRefNo;
+     AccRefNo = Newref;
    }
    protected String getName()
    {
@@ -61,9 +61,10 @@ abstract class CustomerAccounts
       balance = balance - PaymentAmount;
    }
 
-   protected void RecordSale(double SaleAmount)
+   protected double RecordSale(double SaleAmount)
    {
       balance = balance + SaleAmount;
+      return balance;
    }
 
    protected void welcome(){

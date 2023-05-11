@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="04767ccf-7c68-4eae-8ac3-e120f34551b8" name="Changes" comment="added main structure and functions">
-      <change afterPath="$PROJECT_DIR$/src/Company/AccountsArray.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Company/AccountsArray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Company/AccountsArray.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Company/BussinessAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Company/BussinessAccount.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Company/CustomerAccounts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Company/CustomerAccounts.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Company/PersonalCustomerAccounts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Company/PersonalCustomerAccounts.java" afterDir="false" />
@@ -92,5 +92,16 @@
     <MESSAGE value="added main structure" />
     <MESSAGE value="added main structure and functions" />
     <option name="LAST_COMMIT_MESSAGE" value="added main structure and functions" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Company/CustomerAccounts.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
