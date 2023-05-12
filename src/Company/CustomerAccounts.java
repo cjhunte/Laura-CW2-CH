@@ -4,7 +4,7 @@ package Company;
 
 
 
-abstract class CustomerAccount
+abstract class CustomerAccounts
 {
 
 
@@ -15,12 +15,14 @@ abstract class CustomerAccount
    private String Address;
    private double balance = 00.00;
 
-   public CustomerAccount()
+   public CustomerAccounts()
    {
+
+
 
    }
 
-   public CustomerAccount(String Newname, int NewAccNum, String nAddress)
+   public CustomerAccounts(String Newname, int NewAccNum, String nAddress)
    {
       AccRefNo = NewAccNum;
       name = Newname;

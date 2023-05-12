@@ -1,6 +1,6 @@
 package Company;
 
-public class PersonalCustomerAccount extends CustomerAccount
+public class PersonalCustomerAccounts extends CustomerAccounts
 {
 
    private static int pAccRefNo = 1000;
@@ -11,7 +11,7 @@ public class PersonalCustomerAccount extends CustomerAccount
    }
 
 
-   public PersonalCustomerAccount(String Newname, String nAddress)
+   public PersonalCustomerAccounts(String Newname, String nAddress)
    {
       super(Newname,  pAccRefNo, nAddress);
       pAccRefNo++;

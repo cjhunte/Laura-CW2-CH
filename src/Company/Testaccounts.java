@@ -191,6 +191,9 @@ static Scanner scany = new Scanner(System.in);
 
 
 
+
+
+
    do {
       System.out.print("***************************************************************************\n");
 
@@ -205,7 +208,7 @@ static Scanner scany = new Scanner(System.in);
 
          case 1://contains personal account code.
          {
-            PersonalCustomerAccount defaultcus = new PersonalCustomerAccount(Newname, nAddress);
+            PersonalCustomerAccounts defaultcus = new PersonalCustomerAccounts(Newname, nAddress);
             defaultcus.welcome();
 
 
@@ -229,7 +232,7 @@ static Scanner scany = new Scanner(System.in);
 
                      nAddress = gettext("customer address\n");
 
-                     PersonalCustomerAccount PCustomer = new PersonalCustomerAccount(Newname, nAddress);
+                     PersonalCustomerAccounts PCustomer = new PersonalCustomerAccounts(Newname, nAddress);
                      myarray.insertAcc(PCustomer);
 
                   }break;
@@ -238,31 +241,41 @@ static Scanner scany = new Scanner(System.in);
                   {
 
 
-                     do {
-                        ///if case 2 is chosen then we can search for and view a property
-                        System.out.print("please enter the account number you wish to find starting with 1XXX");
+                     int i = 0;
 
-                        int AccRefSearch = Integer.parseInt(scany.next());
-                        myarray.findAccByNumber(AccRefSearch);
-                        for (int i = 0; i < myarray.Getaccountsamount(); i++){
-                           if (myarray.getCurrent(i).getAccRefNo() == AccRefSearch)
-                           {
-                              System.out.println(myarray.getCurrent(i).tostring());
-                              stats = true;
-                              break;
-                           }System.out.println("account does not exist");
+                           do {
+                              try {
+                              System.out.print("please enter the account number you wish to find starting with 1XXX");
+
+                           int AccRefSearch = Integer.parseInt(scany.next());
+
+                           myarray.findAccByNumber(AccRefSearch);
+                              for (i = 0; i < myarray.Getaccountsamount(); i++)
+                              {
+                                 if (myarray.getCurrent(i).getAccRefNo() == AccRefSearch)
+                                 {
+                                    System.out.println(myarray.getCurrent(i).tostring());
+                                    stats = true;
+                                 }
+                              }
+
+                        } catch (ArrayIndexOutOfBoundsException |NumberFormatException e)
+                        {
+                           System.out.println("Error: Index is out of bounds.\nAccount does not exist");
+
+
                         }
-                        break;
+
+                        }while (!stats) ;
+                        if (stats){
 
 
-                     }while (!stats);
 
 
-
-                     System.out.println("Make a sale \n");
-                     System.out.println("Make a payment\n");
-                     System.out.println("Display balance \n");
-                     System.out.println("Display details \n");
+                     System.out.print("Make a sale \n");
+                     System.out.print("Make a payment\n");
+                     System.out.print("Display balance \n");
+                     System.out.print("Display details \n");
 
 
                      choice4 = Integer.parseInt(gettext("please select your action for this account\n"));
@@ -273,25 +286,34 @@ static Scanner scany = new Scanner(System.in);
 
 
                      case 1:
-                     {int i = 0;
-                        double SaleAmount = Double.parseDouble(gettext("please enter the amount payed to you\n"));
-                        System.out.println(i);
-                        myarray.getCurrent(i).RecordSale(SaleAmount);
-                        myarray.getCurrent(i).DisplayBalance();
+                     {
+                        try{
+                           double SaleAmount = Double.parseDouble(gettext("please enter the amount payed to you\n"));
+                           System.out.println(i);
+                           myarray.getCurrent(i).RecordSale(SaleAmount);
+                           myarray.getCurrent(i).DisplayBalance();
+
+                        }catch (IndexOutOfBoundsException e)
+                        {
+                           System.out.println("Error: Please enter a valid value");
+                           break;
+
+                        }
 
                      }
                      break;
 
                      case 2:
-                     {int i = 0;
+                     {
                         double PaymentAmount = Double.parseDouble(gettext("please enter the amount payed\n"));
 
                         myarray.getCurrent(i).Payment(PaymentAmount);
                      }
                      break;
 
-
                      }while (choice4 != 0);
+
+                        }
 
                   }//////case 2 end
 
@@ -299,11 +321,13 @@ static Scanner scany = new Scanner(System.in);
                      {
                         if ((choice2 < 0) ||(choice2 > 2))
                         System.out.println("Selection invalid");
+                        break;
                      }
                }
 
                }while (choice2 != 0);
                break;
+
             }
 
 
@@ -317,7 +341,7 @@ static Scanner scany = new Scanner(System.in);
             case 2:
             {
 
-               BussinessAccount DefBcus = new BussinessAccount(Newname, nAddress, Discount);
+               BussinessAccounts DefBcus = new BussinessAccounts(Newname, nAddress, Discount);
                DefBcus.welcome();
 
 
@@ -344,7 +368,7 @@ static Scanner scany = new Scanner(System.in);
 
                         Discount = Double.parseDouble(gettext("Discount to be used\n"));
 
-                        BussinessAccount BCustomer = new BussinessAccount(Newname, nAddress, Discount );
+                        BussinessAccounts BCustomer = new BussinessAccounts(Newname, nAddress, Discount );
                         myarray.insertAcc(BCustomer);
 
 
