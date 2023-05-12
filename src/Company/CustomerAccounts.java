@@ -28,9 +28,9 @@ abstract class CustomerAccounts
    }
 
 
-   protected void getAccRefNo(int Newref)
+   protected int getAccRefNo(int NewAccNum)
    {
-     this.AccRefNo = Newref;
+     return this.AccRefNo = NewAccNum;
    }
    protected String getName()
    {

@@ -186,7 +186,7 @@ public static String gettext(String message)
    int bAccRefNo = 2000;
    String Newname = "", nAddress= "";
    double balance, pay, saleamount;
-   int hours, choice ,choice2 = -1,choice3,NewAccNum = 1000,pAccRefNo = 0000,NaccNum = 0000;
+   int hours, choice ,choice2 = -1,choice3,NewAccNum = 1000,pAccRefNo = 0000,NaccNum = 0000, Newref = 0000;
    boolean stats = false;
    AccountsArray myarray = new AccountsArray();
    DecimalFormat df = new DecimalFormat("0,000.00");
@@ -202,7 +202,7 @@ public static String gettext(String message)
       {
 
 
-         case 1://
+         case 1://contains personal account code.
          {
 
             PersonalCustomerAccounts defaultcus = new PersonalCustomerAccounts(Newname, NewAccNum, nAddress);
@@ -225,6 +225,7 @@ public static String gettext(String message)
                   {
 
 
+
                      Newname = gettext("Customer name\n");
 
                      NewAccNum = PersonalCustomerAccounts.getPerAccNum(pAccRefNo, NewAccNum);
@@ -238,10 +239,26 @@ public static String gettext(String message)
                      myarray.insertAcc(PCustomer1);
 
 
-                  }
+                  }break;
 
                   case 2:
                   {
+                     ///if case 2 is chosen then we can search for and view a property
+
+                     do {
+
+                        System.out.print("please enter the account number you wish to find");
+
+                        int AccRefSearch = Integer.parseInt(scany.next());
+                        myarray.findAccByNumber(AccRefSearch);
+                        for (int i=0; i < myarray.Getaccountsamount(); i++)
+                           if (myarray.getCurrent(i).getAccRefNo(NewAccNum) == AccRefSearch)
+                           {
+                              System.out.println(myarray.getCurrent(i).tostring());
+                              stats = true;
+                           }
+                     }while (!stats);
+
 
                   }
 
@@ -277,8 +294,8 @@ public static String gettext(String message)
 
                         Newname = gettext("Customer name\n");
 
-                        NewAccNum = BussinessAccount.getBusAccNum(bAccRefNo, NaccNum);
-                        System.out.print(NaccNum+"\n");
+                        bAccRefNo = BussinessAccount.getBusAccNum(bAccRefNo, NaccNum);
+                        System.out.print(bAccRefNo+"\n");
 
                         nAddress = gettext("customer address\n");
 
