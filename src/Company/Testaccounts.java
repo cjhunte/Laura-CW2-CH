@@ -1,8 +1,6 @@
 package Company;
 
 import java.text.DecimalFormat;
-import java.util.List;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -11,7 +9,7 @@ public class Testaccounts
 static Scanner scany = new Scanner(System.in);
 
 
-public static String gettext(String message)
+   public static String gettext(String message)
 {
    System.out.print(message);
 
@@ -183,10 +181,10 @@ public static String gettext(String message)
    {
 
 
-   int bAccRefNo = 2000;
+
    String Newname = "", nAddress= "";
-   double balance, pay, saleamount;
-   int hours, choice ,choice2 = -1,choice3,NewAccNum = 1000,pAccRefNo = 0000,NaccNum = 0000, Newref = 0000;
+   double balance, pay, saleamount, Discount = 0;
+   int hours, choice , choice2 = -1,choice3,choice4;
    boolean stats = false;
    AccountsArray myarray = new AccountsArray();
    DecimalFormat df = new DecimalFormat("0,000.00");
@@ -195,8 +193,11 @@ public static String gettext(String message)
 
    do {
       System.out.print("***************************************************************************\n");
+
       choice = Integer.parseInt(gettext("Is your account business or personal. "+"Please press 1 for personal and 2 for Business\n"));
+
       System.out.print("***************************************************************************\n");
+
 
       switch (choice)
       {
@@ -204,9 +205,9 @@ public static String gettext(String message)
 
          case 1://contains personal account code.
          {
-
-            PersonalCustomerAccounts defaultcus = new PersonalCustomerAccounts(Newname, NewAccNum, nAddress);
+            PersonalCustomerAccount defaultcus = new PersonalCustomerAccount(Newname, nAddress);
             defaultcus.welcome();
+
 
             do {
                System.out.print("******************************************\n");
@@ -224,43 +225,75 @@ public static String gettext(String message)
                   case 1:
                   {
 
-
-
                      Newname = gettext("Customer name\n");
-
-                     NewAccNum = PersonalCustomerAccounts.getPerAccNum(pAccRefNo, NewAccNum);
-
-
-                     System.out.print(NewAccNum+"\n");
 
                      nAddress = gettext("customer address\n");
 
-                     PersonalCustomerAccounts PCustomer1 = new PersonalCustomerAccounts(Newname, NewAccNum, nAddress);
-                     myarray.insertAcc(PCustomer1);
-
+                     PersonalCustomerAccount PCustomer = new PersonalCustomerAccount(Newname, nAddress);
+                     myarray.insertAcc(PCustomer);
 
                   }break;
 
-                  case 2:
+                  case 2:///////case 2 start.
                   {
-                     ///if case 2 is chosen then we can search for and view a property
+
 
                      do {
-
-                        System.out.print("please enter the account number you wish to find");
+                        ///if case 2 is chosen then we can search for and view a property
+                        System.out.print("please enter the account number you wish to find starting with 1XXX");
 
                         int AccRefSearch = Integer.parseInt(scany.next());
                         myarray.findAccByNumber(AccRefSearch);
-                        for (int i=0; i < myarray.Getaccountsamount(); i++)
-                           if (myarray.getCurrent(i).getAccRefNo(NewAccNum) == AccRefSearch)
+                        for (int i = 0; i < myarray.Getaccountsamount(); i++){
+                           if (myarray.getCurrent(i).getAccRefNo() == AccRefSearch)
                            {
                               System.out.println(myarray.getCurrent(i).tostring());
                               stats = true;
-                           }
+                              break;
+                           }System.out.println("account does not exist");
+                        }
+                        break;
+
+
                      }while (!stats);
 
 
-                  }
+
+                     System.out.println("Make a sale \n");
+                     System.out.println("Make a payment\n");
+                     System.out.println("Display balance \n");
+                     System.out.println("Display details \n");
+
+
+                     choice4 = Integer.parseInt(gettext("please select your action for this account\n"));
+
+
+                     switch (choice4)
+                     {
+
+
+                     case 1:
+                     {int i = 0;
+                        double SaleAmount = Double.parseDouble(gettext("please enter the amount payed to you\n"));
+                        System.out.println(i);
+                        myarray.getCurrent(i).RecordSale(SaleAmount);
+                        myarray.getCurrent(i).DisplayBalance();
+
+                     }
+                     break;
+
+                     case 2:
+                     {int i = 0;
+                        double PaymentAmount = Double.parseDouble(gettext("please enter the amount payed\n"));
+
+                        myarray.getCurrent(i).Payment(PaymentAmount);
+                     }
+                     break;
+
+
+                     }while (choice4 != 0);
+
+                  }//////case 2 end
 
                      default:
                      {
@@ -272,12 +305,25 @@ public static String gettext(String message)
                }while (choice2 != 0);
                break;
             }
+
+
+
+
+
+
+
+
+
             case 2:
             {
 
+               BussinessAccount DefBcus = new BussinessAccount(Newname, nAddress, Discount);
+               DefBcus.welcome();
+
+
                do {
                   System.out.print("******************************************\n");
-                  System.out.print("please select a choice from the menu?????\n");
+                  System.out.print("please select a choice from the menu?\n");
                   System.out.print("1 - create a new account\n");
                   System.out.print("2 - search for an existing account\n");
                   System.out.print("0 - exit the terminal\n");
@@ -294,20 +340,31 @@ public static String gettext(String message)
 
                         Newname = gettext("Customer name\n");
 
-                        bAccRefNo = BussinessAccount.getBusAccNum(bAccRefNo, NaccNum);
-                        System.out.print(bAccRefNo+"\n");
-
                         nAddress = gettext("customer address\n");
 
-                        BussinessAccount BCustomer1 = new BussinessAccount(Newname, NewAccNum, nAddress);
-                        myarray.insertAcc(BCustomer1);
+                        Discount = Double.parseDouble(gettext("Discount to be used\n"));
+
+                        BussinessAccount BCustomer = new BussinessAccount(Newname, nAddress, Discount );
+                        myarray.insertAcc(BCustomer);
 
 
                      }
 
                      case 2:
                      {
+                        do {
 
+                           System.out.print("please enter the account number you wish to find starting with 2XXX");
+
+                           int AccRefSearch = Integer.parseInt(scany.next());
+                           myarray.findAccByNumber(AccRefSearch);
+                           for (int i=0; i < myarray.Getaccountsamount(); i++)
+                              if (myarray.getCurrent(i).getAccRefNo() == AccRefSearch)
+                              {
+                                 System.out.println(myarray.getCurrent(i).tostring());
+                                 stats = true;
+                              }
+                        }while (!stats);
                      }
 
                      default:

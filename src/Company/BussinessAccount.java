@@ -2,10 +2,11 @@ package Company;
 
 import java.text.DecimalFormat;
 
-public class BussinessAccount extends CustomerAccounts
+public class BussinessAccount extends CustomerAccount
 
 {
-   private double Discount = 0.1;
+   private static int bAccRefNo = 2000;
+   public static double Discount = 0.1;
    private double balance = 00.00;
    DecimalFormat df = new DecimalFormat("0,000.00");
 
@@ -14,13 +15,10 @@ public class BussinessAccount extends CustomerAccounts
       super();
    }
 
-   public BussinessAccount(String Newname, int NewAccNum, String nAddress)
+   public BussinessAccount(String Newname, String nAddress, double Discount)
    {
-      super(Newname, NewAccNum , nAddress);
-   }
-   public static int getBusAccNum (int bAccRefNo, int NaccNum)
-   {
-      return NaccNum = bAccRefNo + 1;
+      super(Newname, bAccRefNo , nAddress);
+      bAccRefNo++;
    }
 
 

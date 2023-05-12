@@ -4,33 +4,34 @@ package Company;
 
 
 
-abstract class CustomerAccounts
+abstract class CustomerAccount
 {
 
 
    public static String POUND = "\u00A3";
    private String name;
-   private int AccRefNo = 0000;
+   private int AccRefNo;
 
    private String Address;
    private double balance = 00.00;
 
-   public CustomerAccounts()
+   public CustomerAccount()
    {
 
    }
 
-   public CustomerAccounts(String Newname, int NewAccNum,String nAddress)
+   public CustomerAccount(String Newname, int NewAccNum, String nAddress)
    {
       AccRefNo = NewAccNum;
       name = Newname;
       Address = nAddress;
+
    }
 
 
-   protected int getAccRefNo(int NewAccNum)
+   protected int getAccRefNo()
    {
-     return this.AccRefNo = NewAccNum;
+     return this.AccRefNo;
    }
    protected String getName()
    {

@@ -4,15 +4,15 @@ import java.util.ArrayList;
 
 public class AccountsArray
 {
-   private List<CustomerAccounts> CustomerAccountlist;
+   private List<CustomerAccount> CustomerAccountlist;
 
     // Constructor to create an array of references to Property objects
     public AccountsArray() {
-       CustomerAccountlist = new ArrayList<CustomerAccounts>();
+       CustomerAccountlist = new ArrayList<CustomerAccount>();
     }//ArrayOfProprties
 
     // Return a reference to the current property
-    protected CustomerAccounts getCurrent(int position) {
+    protected CustomerAccount getCurrent(int position) {
        return CustomerAccountlist.get(position);
     }//getCurrent
 
@@ -25,8 +25,8 @@ public class AccountsArray
 
 
     // Add Property object to the array
-    protected void insertAcc(CustomerAccounts newacc) {
-       CustomerAccountlist.add(newacc);
+    protected void insertAcc(CustomerAccount newacc) {
+       this.CustomerAccountlist.add(newacc);
        System.out.println(newacc.tostring() + " and the account has been Added");
     }//insert property
 
