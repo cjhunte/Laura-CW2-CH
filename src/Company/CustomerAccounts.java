@@ -71,7 +71,7 @@ abstract class CustomerAccounts
    }
 
    protected void welcome(){
-      System.out.println("Welcome to the " + getstatus() + " menu");
+      System.out.println(getstatus() + " Array");
    }
 
    public String AccDetails()
@@ -80,7 +80,7 @@ abstract class CustomerAccounts
    }
    public String DisplayBalance()
    {
-      return  "the customer has a balance of " + POUND + balance + "\n";
+      return  "The customer has a balance of " + POUND + balance + "\n";
    }
 
    abstract protected String getstatus();

@@ -20,7 +20,7 @@ static Scanner scany = new Scanner(System.in);
    {
       String Newname, nAddress ;
       double Discount = 0;
-      int choice, choice2, choice4;
+      int choice, choice2, choice3;
       boolean stats = false;
       AccountsArray myarray = new AccountsArray();
       DecimalFormat df = new DecimalFormat("0,000.00");
@@ -28,11 +28,12 @@ static Scanner scany = new Scanner(System.in);
 
       do {
 
-
+         System.out.print("************************************\n");
          System.out.print("please select a choice from the menu\n");
          System.out.print("1 - create a new account\n");
          System.out.print("2 - search for an existing account\n");
-         System.out.print("-1 - exit the terminal\n");
+         System.out.print("0 - exit the terminal\n");
+         System.out.print("************************************\n");
          choice = scany.nextInt();
 
          switch (choice)///this sets up the main option's menu.
@@ -41,10 +42,12 @@ static Scanner scany = new Scanner(System.in);
             {
 
                do {
+                  System.out.print("************************************\n");
                   System.out.print("please select a choice from the menu\n");
                   System.out.print("1 - create a new personal account\n");
                   System.out.print("2 - create a new business account\n");
                   System.out.print("0 - exit the terminal\n");
+                  System.out.print("**********************************\n");
                   choice2 = scany.nextInt();
                   switch (choice2) {
                      case 1: {
@@ -53,20 +56,26 @@ static Scanner scany = new Scanner(System.in);
 
                         nAddress = gettext("customer address\n");
 
+
+
                         PersonalCustomerAccounts PCustomer = new PersonalCustomerAccounts(Newname, nAddress);
                         myarray.insertAcc(PCustomer);
+
 
                      }
                      break;
                      case 2: {
+
                         Newname = gettext("Customer name\n");
 
                         nAddress = gettext("customer address\n");
 
                         Discount = Double.parseDouble(gettext("Discount to be used\n"));
 
+
                         BussinessAccounts BCustomer = new BussinessAccounts(Newname, nAddress, Discount);
                         myarray.insertAcc(BCustomer);
+
 
                      }break;
 
@@ -91,7 +100,11 @@ static Scanner scany = new Scanner(System.in);
 
                do {
                   try {
-                     System.out.print("please enter the account number you wish to find starting with 1XXX or 2XXX");
+                     System.out.print("*************************************************************************\n");
+
+                     System.out.print("please enter the account number you wish to find starting with 1XXX or 2XXX\n");
+
+                     System.out.print("*************************************************************************\n");
 
                      int AccRefSearch = Integer.parseInt(scany.next());
 
@@ -119,26 +132,30 @@ static Scanner scany = new Scanner(System.in);
                if (stats) {
 
                   do {
+                     System.out.print("**********************************\n");
                      System.out.print("1 - Make a sale \n");
                      System.out.print("2 - Make a payment\n");
                      System.out.print("3 - Display balance \n");
                      System.out.print("4 - Display details \n");
                      System.out.print("Press 0 to exit to main menu. \n");
+                     System.out.print("**********************************\n");
 
-                     choice4 = Integer.parseInt(gettext("please select your action for this account\n"));
+                     choice3 = Integer.parseInt(gettext("please select your action for this account\n"));
 
 
-                     switch (choice4) {
+
+                     switch (choice3) {
 
 
                         case 1: {
                            try {
-                              double SaleAmount = Double.parseDouble(gettext("please enter the amount payed to you\n"));
+                              System.out.print("**********************************\n");
 
-                              System.out.println(index);
+                              double SaleAmount = Double.parseDouble(gettext("Please enter the amount payed to you\n"));
 
                               myarray.getCurrent(index).RecordSale(SaleAmount);
 
+                              System.out.print("**********************************\n");
                               System.out.println(myarray.getCurrent(index).DisplayBalance());
 
                            } catch (IndexOutOfBoundsException e) {
@@ -155,8 +172,6 @@ static Scanner scany = new Scanner(System.in);
                            try {
                               double PaymentAmount = Double.parseDouble(gettext("please enter the amount you paid.\n"));
 
-                              System.out.println(index);
-
                               myarray.getCurrent(index).Payment(PaymentAmount);
 
                               System.out.println(myarray.getCurrent(index).DisplayBalance());
@@ -164,25 +179,25 @@ static Scanner scany = new Scanner(System.in);
                               System.out.println("Error: Please enter a valid value");
                               break;
 
-                           }
-                        }////switch end
+                           }break;
+                        }
 
                         case 3: {
                            System.out.println("**********************");
                            System.out.println(myarray.getCurrent(index).DisplayBalance());
-                        }////switch end
+                        }break;
 
                         case 4: {
                            System.out.println("**********************");
                            System.out.println(myarray.getCurrent(index).AccDetails());
-                        }
+                        }break;
                         default:
-                           if ((choice4 < 0) || (choice4 > 4))
+                           if ((choice3 < 0) || (choice3 > 4))
                               System.out.println("Selection invalid");
 
 
                      }
-                  }while(choice4 != 0);
+                  }while(choice3 != 0);
                }
 
 
