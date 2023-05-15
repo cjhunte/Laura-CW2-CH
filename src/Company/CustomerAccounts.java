@@ -74,13 +74,13 @@ abstract class CustomerAccounts
       System.out.println("Welcome to the " + getstatus() + " menu");
    }
 
-   public String tostring()
+   public String AccDetails()
    {
       return "******************************"+"\n"+"Customer number " + AccRefNo + " is called " + name+ "\n"+"and lives at " + Address;
    }
    public String DisplayBalance()
    {
-      return "the customer has a balance of " + POUND + balance + "\n";
+      return  "the customer has a balance of " + POUND + balance + "\n";
    }
 
    abstract protected String getstatus();

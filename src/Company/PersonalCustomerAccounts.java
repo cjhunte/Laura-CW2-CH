@@ -3,7 +3,7 @@ package Company;
 public class PersonalCustomerAccounts extends CustomerAccounts
 {
 
-   private static int pAccRefNo = 1000;
+   private static int pAccRefNo = 1001;
 
 
    public void welcome() {

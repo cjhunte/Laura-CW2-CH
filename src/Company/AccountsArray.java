@@ -28,7 +28,7 @@ public class AccountsArray
     // Add Property object to the array
     protected void insertAcc(CustomerAccounts newacc) {
        this.customerAccountlist.add(newacc);
-       System.out.println(newacc.tostring() + " and the account has been Added");
+       System.out.println(newacc.AccDetails() + " and the account has been Added");
     }//insert property
 
     // Remove Property object from the array
@@ -36,6 +36,8 @@ public class AccountsArray
        System.out.println(getCurrent(position) + " Removed");
        customerAccountlist.remove(position);
     }//removeProperty
+
+
 
     // **************
     // SEARCH METHODS
