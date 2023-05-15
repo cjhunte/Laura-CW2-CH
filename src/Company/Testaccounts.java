@@ -16,15 +16,11 @@ static Scanner scany = new Scanner(System.in);
    return scany.next();
 
 }
-
-
-
-
-
-   public static void main(String[]args) {
-      String Newname = "", nAddress = "";
-      double balance, pay, saleamount, Discount = 0;
-      int hours, choice, choice2 = -1, choice3, choice4;
+   public static void main(String[]args)
+   {
+      String Newname, nAddress ;
+      double Discount = 0;
+      int choice, choice2, choice4;
       boolean stats = false;
       AccountsArray myarray = new AccountsArray();
       DecimalFormat df = new DecimalFormat("0,000.00");
@@ -72,15 +68,14 @@ static Scanner scany = new Scanner(System.in);
                         BussinessAccounts BCustomer = new BussinessAccounts(Newname, nAddress, Discount);
                         myarray.insertAcc(BCustomer);
 
-                     }
+                     }break;
 
 
 
                      default:
-                        if (choice2 == 0) {
-                           break;
-                        } else
+                        if (choice2 < 0 || choice2 > 2) {
                            System.out.println("Selection invalid");
+                        }
 
 
                   }
@@ -123,71 +118,72 @@ static Scanner scany = new Scanner(System.in);
                }while (!stats) ;
                if (stats) {
 
+                  do {
+                     System.out.print("1 - Make a sale \n");
+                     System.out.print("2 - Make a payment\n");
+                     System.out.print("3 - Display balance \n");
+                     System.out.print("4 - Display details \n");
+                     System.out.print("Press 0 to exit to main menu. \n");
 
-                  System.out.print("Make a sale \n");
-                  System.out.print("Make a payment\n");
-                  System.out.print("Display balance \n");
-                  System.out.print("Display details \n");
-
-
-                  choice4 = Integer.parseInt(gettext("please select your action for this account\n"));
-
-
-                  switch (choice4) {
+                     choice4 = Integer.parseInt(gettext("please select your action for this account\n"));
 
 
-                     case 1:
-                     {
-                        try {
-                           double SaleAmount = Double.parseDouble(gettext("please enter the amount payed to you\n"));
+                     switch (choice4) {
 
-                           System.out.println(index);
 
-                           myarray.getCurrent(index).RecordSale(SaleAmount);
+                        case 1: {
+                           try {
+                              double SaleAmount = Double.parseDouble(gettext("please enter the amount payed to you\n"));
 
-                           System.out.println (myarray.getCurrent(index).DisplayBalance());
+                              System.out.println(index);
 
-                        } catch (IndexOutOfBoundsException e) {
-                           System.out.println("Error: Please enter a valid value");
-                           break;
+                              myarray.getCurrent(index).RecordSale(SaleAmount);
+
+                              System.out.println(myarray.getCurrent(index).DisplayBalance());
+
+                           } catch (IndexOutOfBoundsException e) {
+                              System.out.println("Error: Please enter a valid value");
+                              break;
+
+                           }
 
                         }
-
-                     }break;
-
+                        break;
 
 
-                     case 2: {
-                        try {
-                           double PaymentAmount = Double.parseDouble(gettext("please enter the amount you paid.\n"));
+                        case 2: {
+                           try {
+                              double PaymentAmount = Double.parseDouble(gettext("please enter the amount you paid.\n"));
 
-                           System.out.println(index);
+                              System.out.println(index);
 
-                           myarray.getCurrent(index).Payment(PaymentAmount);
+                              myarray.getCurrent(index).Payment(PaymentAmount);
 
+                              System.out.println(myarray.getCurrent(index).DisplayBalance());
+                           } catch (IndexOutOfBoundsException e) {
+                              System.out.println("Error: Please enter a valid value");
+                              break;
+
+                           }
+                        }////switch end
+
+                        case 3: {
+                           System.out.println("**********************");
                            System.out.println(myarray.getCurrent(index).DisplayBalance());
-                        } catch (IndexOutOfBoundsException e) {
-                           System.out.println("Error: Please enter a valid value");
-                           break;
+                        }////switch end
 
+                        case 4: {
+                           System.out.println("**********************");
+                           System.out.println(myarray.getCurrent(index).AccDetails());
                         }
-                     }////switch end
+                        default:
+                           if ((choice4 < 0) || (choice4 > 4))
+                              System.out.println("Selection invalid");
 
-                     case 3:
-                     {
-                        System.out.println("**********************");
-                        System.out.println(myarray.getCurrent(index).DisplayBalance());
-                     }////switch end
 
-                     case 4:
-                     {
-                        System.out.println("**********************");
-                        System.out.println(myarray.getCurrent(index).AccDetails());
                      }
-
-                  }
+                  }while(choice4 != 0);
                }
-               break;
 
 
             case 3:///allows the user to exit the program.
