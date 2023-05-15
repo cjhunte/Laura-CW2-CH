@@ -8,6 +8,7 @@ public class BussinessAccounts extends CustomerAccounts
    private static int bAccRefNo = 2001;
    public static double Discount = 0.1;
    private double balance = 00.00;
+   private double SaleAmount = 0;
    DecimalFormat df = new DecimalFormat("0,000.00");
 
    public BussinessAccounts()
@@ -21,31 +22,27 @@ public class BussinessAccounts extends CustomerAccounts
       bAccRefNo++;
    }
 
-
-   protected double applyDiscount(double balance)
-   {
-      return balance * Discount;
-   }
-
    protected void setdiscount(double NewDiscount)
    {
       Discount = NewDiscount;
    }
 
-   protected double calculateDiscount()
+   public double calculateDiscount(double SaleAmount)
    {
-      return balance + applyDiscount(balance);
+      return SaleAmount * Discount;
    }
 
    @Override
 
    public String AccDetails()
    {
-      return (super.AccDetails() + " Monthly Pay:  £" + df.format(applyDiscount(balance)) + "\n");
+      return (super.AccDetails() + " Monthly Pay:  £" + (calculateDiscount(balance)) + "\n");
    }
    protected String getstatus()
    {
       return ("\n to Business Accounts");
    }
+
+
 
 }

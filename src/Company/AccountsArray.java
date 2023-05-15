@@ -11,7 +11,7 @@ public class AccountsArray
        customerAccountlist = new ArrayList<CustomerAccounts>();
     }//ArrayOfProprties
 
-    // Return a reference to the current property
+    // Returns the index of a users account
     protected CustomerAccounts getCurrent(int i) {
 
         return customerAccountlist.get(i);

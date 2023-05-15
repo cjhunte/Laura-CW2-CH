@@ -1,6 +1,7 @@
 package Company;
 
 import java.text.DecimalFormat;
+import java.util.Arrays;
 import java.util.Scanner;
 
 
@@ -9,11 +10,11 @@ public class Testaccounts
 static Scanner scany = new Scanner(System.in);
 
 
-   public static String gettext(String message)
+   public static String gettext(String message)//stores the message for later use to be overridden
 {
-   System.out.print(message);
+   System.out.print(message);//prints the message to ask for input
 
-   return scany.next();
+   return scany.next();//takes a string value and stores it as whatever value is declared
 
 }
    public static void main(String[]args)
@@ -26,15 +27,17 @@ static Scanner scany = new Scanner(System.in);
       DecimalFormat df = new DecimalFormat("0,000.00");
 
 
-      do {
+      do//do loop for the whole program and the main menu meaning the user cannot exit until they have confirmed it.
+      {
 
-         System.out.print("************************************\n");
-         System.out.print("please select a choice from the menu\n");
-         System.out.print("1 - create a new account\n");
-         System.out.print("2 - search for an existing account\n");
-         System.out.print("0 - exit the terminal\n");
-         System.out.print("************************************\n");
-         choice = scany.nextInt();
+         System.out.print("************************************\n");//prints a message to the user
+
+         System.out.print("1 - create a new account\n");//prints a message to the user
+         System.out.print("2 - search for an existing account\n");//prints a message to the user
+         System.out.print("0 - exit the terminal\n");//prints a message to the user
+         System.out.print("************************************\n");//prints a message to the user
+
+         choice = Integer.parseInt(gettext("please select a choice from the menu\n"));//takes user input for the first menu as choice.
 
          switch (choice)///this sets up the main option's menu.
          {
@@ -42,19 +45,20 @@ static Scanner scany = new Scanner(System.in);
             {
 
                do {
-                  System.out.print("************************************\n");
-                  System.out.print("please select a choice from the menu\n");
-                  System.out.print("1 - create a new personal account\n");
-                  System.out.print("2 - create a new business account\n");
-                  System.out.print("0 - exit the terminal\n");
-                  System.out.print("**********************************\n");
-                  choice2 = scany.nextInt();
+                  System.out.print("************************************\n");//prints a message to the user
+                  System.out.print("1 - create a new personal account\n");//prints a message to the user
+                  System.out.print("2 - create a new business account\n");//prints a message to the user
+                  System.out.print("0 - exit the terminal\n");//prints a message to the user
+                  System.out.print("**********************************\n");//prints a message to the user
+
+                  choice2 = Integer.parseInt(gettext("please select a choice from the menu\n"));//takes user input for the first menu as choice.
+
                   switch (choice2) {
                      case 1: {
 
-                        Newname = gettext("Customer name\n");
+                        Newname = gettext("Customer name\n");//uses the gettext method to set the new customer name.
 
-                        nAddress = gettext("customer address\n");
+                        nAddress = gettext("customer address\n");//uses the gettext method to set the new customer address.
 
 
 
@@ -66,11 +70,11 @@ static Scanner scany = new Scanner(System.in);
                      break;
                      case 2: {
 
-                        Newname = gettext("Customer name\n");
+                        Newname = gettext("Customer name\n");//uses the gettext method to set the new customer name.
 
-                        nAddress = gettext("customer address\n");
+                        nAddress = gettext("customer address\n");//uses the gettext method to set the new customer address.
 
-                        Discount = Double.parseDouble(gettext("Discount to be used\n"));
+                        Discount = Double.parseDouble(gettext("Discount to be used\n"));//uses the gettext method to set the new business customer discount.
 
 
                         BussinessAccounts BCustomer = new BussinessAccounts(Newname, nAddress, Discount);
@@ -94,9 +98,9 @@ static Scanner scany = new Scanner(System.in);
             }
 
 
-            case 2:///if case 2 is chosen then we can search for and view a property
+            case 2:///if case 2 is chosen then we can search for, veiw and edit the users account
 
-               int index = 0;
+               int index = 0; //initializes the value index to be used throughout case two.
 
                do {
                   try {
@@ -143,7 +147,6 @@ static Scanner scany = new Scanner(System.in);
                      choice3 = Integer.parseInt(gettext("please select your action for this account\n"));
 
 
-
                      switch (choice3) {
 
 
@@ -172,33 +175,45 @@ static Scanner scany = new Scanner(System.in);
                            try {
                               double PaymentAmount = Double.parseDouble(gettext("please enter the amount you paid.\n"));
 
-                              myarray.getCurrent(index).Payment(PaymentAmount);
+                              char[] bus = Arrays.toString(new int[]{myarray.getCurrent(index).getAccRefNo()}).toCharArray();
+                              char first = bus[0];
+
+                              if (first == 2) {
+                                 myarray.getCurrent(index).Payment(PaymentAmount);
+                              } else {
+
+                                 myarray.getCurrent(index).Payment(PaymentAmount);
+                              }
 
                               System.out.println(myarray.getCurrent(index).DisplayBalance());
                            } catch (IndexOutOfBoundsException e) {
                               System.out.println("Error: Please enter a valid value");
                               break;
 
-                           }break;
+                           }
+                           break;
                         }
 
                         case 3: {
                            System.out.println("**********************");
                            System.out.println(myarray.getCurrent(index).DisplayBalance());
-                        }break;
+                        }
+                        break;
 
                         case 4: {
                            System.out.println("**********************");
                            System.out.println(myarray.getCurrent(index).AccDetails());
-                        }break;
+                        }
+                        break;
                         default:
                            if ((choice3 < 0) || (choice3 > 4))
                               System.out.println("Selection invalid");
 
 
                      }
-                  }while(choice3 != 0);
+                  } while (choice3 != 0);
                }
+               }while
 
 
             case 3:///allows the user to exit the program.

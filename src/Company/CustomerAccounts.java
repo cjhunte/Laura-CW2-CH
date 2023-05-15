@@ -60,14 +60,14 @@ abstract class CustomerAccounts
    }
 
    protected void Payment (double PaymentAmount)
+
    {
       balance = balance - PaymentAmount;
    }
 
-   protected double RecordSale(double SaleAmount)
+   protected void RecordSale(double SaleAmount)
    {
       balance = balance + SaleAmount;
-      return balance;
    }
 
    protected void welcome(){
