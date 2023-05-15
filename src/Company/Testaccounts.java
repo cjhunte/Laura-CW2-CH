@@ -213,7 +213,7 @@ static Scanner scany = new Scanner(System.in);
                      }
                   } while (choice3 != 0);
                }
-               }while
+
 
 
             case 3:///allows the user to exit the program.
