@@ -62,8 +62,8 @@ static Scanner scany = new Scanner(System.in);
 
 
 
-                        PersonalCustomerAccounts PCustomer = new PersonalCustomerAccounts(Newname, nAddress);
-                        myarray.insertAcc(PCustomer);
+                        PersonalCustomerAccounts PCustomer = new PersonalCustomerAccounts(Newname, nAddress);//creates a Personal customer account and stores the related values
+                        myarray.insertAcc(PCustomer);//inserts the object PCustomer into the array
 
 
                      }
@@ -74,11 +74,11 @@ static Scanner scany = new Scanner(System.in);
 
                         nAddress = gettext("customer address\n");//uses the gettext method to set the new customer address.
 
-                        System.out.println("Business Discount is "+Discount);
+                        System.out.println("Business Discount is "+Discount);//prints the discount available to the business user
 
 
-                        BussinessAccounts BCustomer = new BussinessAccounts(Newname, nAddress, Discount);
-                        myarray.insertAcc(BCustomer);
+                        BussinessAccounts BCustomer = new BussinessAccounts(Newname, nAddress, Discount);//creates a business customer account and stores the related values
+                        myarray.insertAcc(BCustomer);//inserts the object BCustomer into the array
 
 
                      }break;
@@ -86,25 +86,27 @@ static Scanner scany = new Scanner(System.in);
 
 
                      default:
-                        if (choice2 < 0 || choice2 > 2) {
+                        if (choice2 < 0 || choice2 > 2) {//if the choice is more than 2 or less than 0 print the selection is invalid
                            System.out.println("Selection invalid");
                         }
 
 
                   }
-               } while (choice2 != 0);
+               } while (choice2 != 0);//runs the second menu until the user exits the menu to
 
                break;
             }
 
 
-            case 2:///if case 2 is chosen then we can search for, veiw and edit the users account
+            case 2:///if case 2 is chosen then we can search for, view and edit the users account
 
                int index = 0; //initializes the value index to be used throughout case two.
 
 
-               do {
-                  try {
+               do
+               {
+                  try
+                  {
                      System.out.print("*************************************************************************\n");
 
                      System.out.print("please enter the account number you wish to find starting with 1XXX or 2XXX\n");
@@ -116,7 +118,9 @@ static Scanner scany = new Scanner(System.in);
 
                      if(myarray.customerAccountlist.size() > 0)
                      {
-                        myarray.findAccByNumber(AccRefSearch);
+
+
+
                         for (int i = 0; i < myarray.Getaccountsamount(); i++)
                         {
                            if (myarray.getCurrent(i).getAccRefNo() == AccRefSearch)
@@ -133,7 +137,7 @@ static Scanner scany = new Scanner(System.in);
                      }break;
                   } catch (ArrayIndexOutOfBoundsException | NumberFormatException e)
                   {
-                     System.out.print("Error: Index is out of bounds.\nAccount does not exist");
+                     System.out.println("Error: Index is out of bounds");
                   }break;
 
                }while (!stats) ;
