@@ -14,11 +14,10 @@ abstract class CustomerAccounts
 
    private String Address;
    private double balance = 00.00;
+   public static double Discount = 0.1;
 
    public CustomerAccounts()
    {
-
-
 
    }
 
@@ -29,7 +28,6 @@ abstract class CustomerAccounts
       Address = nAddress;
 
    }
-
 
    protected int getAccRefNo()
    {
@@ -74,7 +72,7 @@ abstract class CustomerAccounts
       System.out.println(getstatus() + " Array");
    }
 
-   public String AccDetails()
+   public String ToString()
    {
       return "******************************"+"\n"+"Customer number " + AccRefNo + " is called " + name+ "\n"+"and lives at " + Address;
    }
@@ -84,6 +82,16 @@ abstract class CustomerAccounts
    }
 
    abstract protected String getstatus();
+
+   protected double setdiscount(double NewDiscount)
+   {
+      return Discount;
+   }
+
+   public double getDiscount(double PaymentAmount)
+   {
+      return  PaymentAmount * Discount;
+   }
 
 
 

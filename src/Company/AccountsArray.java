@@ -28,7 +28,7 @@ public class AccountsArray
     // Add Property object to the array
     protected void insertAcc(CustomerAccounts newacc) {
        this.customerAccountlist.add(newacc);
-       System.out.println(newacc.AccDetails() + " and the account has been Added"+newacc.getstatus());
+       System.out.println(newacc.ToString() + "The account has been Added"+newacc.getstatus());
     }//insert property
 
     // Remove Property object from the array

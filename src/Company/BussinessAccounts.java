@@ -5,7 +5,7 @@ import java.text.DecimalFormat;
 public class BussinessAccounts extends CustomerAccounts
 
 {
-   private static int bAccRefNo = 2001;
+   private static int bAccRefNo = 2000;
    public static double Discount = 0.1;
    private double balance = 00.00;
    private double SaleAmount = 0;
@@ -22,25 +22,25 @@ public class BussinessAccounts extends CustomerAccounts
       bAccRefNo++;
    }
 
-   protected void setdiscount(double NewDiscount)
+   protected double setdiscount(double NewDiscount)
    {
-      Discount = NewDiscount;
+     return Discount = NewDiscount;
    }
 
-   public double calculateDiscount(double SaleAmount)
+   public double getDiscount(double PaymentAmount)
    {
-      return SaleAmount * Discount;
+      return PaymentAmount * Discount;
    }
 
    @Override
 
-   public String AccDetails()
+   public String ToString()
    {
-      return (super.AccDetails() + " Monthly Pay:  £" + (calculateDiscount(balance)) + "\n");
+      return (super.ToString() + "\n"+"The discount available to the user is "+ Discount +"\n");
    }
    protected String getstatus()
    {
-      return ("\n to Business Accounts");
+      return ("\nTo Business Accounts");
    }
 
 

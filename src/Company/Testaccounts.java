@@ -20,7 +20,7 @@ static Scanner scany = new Scanner(System.in);
    public static void main(String[]args)
    {
       String Newname, nAddress ;
-      double Discount = 0;
+      double Discount = 0.1;
       int choice, choice2, choice3;
       boolean stats = false;
       AccountsArray myarray = new AccountsArray();
@@ -74,7 +74,7 @@ static Scanner scany = new Scanner(System.in);
 
                         nAddress = gettext("customer address\n");//uses the gettext method to set the new customer address.
 
-                        Discount = Double.parseDouble(gettext("Discount to be used\n"));//uses the gettext method to set the new business customer discount.
+                        System.out.println("Business Discount is "+Discount);
 
 
                         BussinessAccounts BCustomer = new BussinessAccounts(Newname, nAddress, Discount);
@@ -102,6 +102,7 @@ static Scanner scany = new Scanner(System.in);
 
                int index = 0; //initializes the value index to be used throughout case two.
 
+
                do {
                   try {
                      System.out.print("*************************************************************************\n");
@@ -113,24 +114,27 @@ static Scanner scany = new Scanner(System.in);
                      int AccRefSearch = Integer.parseInt(scany.next());
 
 
-
-                     myarray.findAccByNumber(AccRefSearch);
-                     for (int i = 0; i < myarray.Getaccountsamount(); i++)
+                     if(myarray.customerAccountlist.size() > 0)
                      {
-                        if (myarray.getCurrent(i).getAccRefNo() == AccRefSearch)
+                        myarray.findAccByNumber(AccRefSearch);
+                        for (int i = 0; i < myarray.Getaccountsamount(); i++)
                         {
-                           System.out.println(myarray.getCurrent(i).AccDetails());
-                           stats = true;
-                           index = i;
+                           if (myarray.getCurrent(i).getAccRefNo() == AccRefSearch)
+                           {
+                              System.out.println(myarray.getCurrent(i).ToString());
+                              stats = true;
+                              index = i;
+                           }
                         }
                      }
-
-                  } catch (ArrayIndexOutOfBoundsException |NumberFormatException e)
+                     else
+                     {
+                        System.out.print("Error: Cannot search an empty array\n");
+                     }break;
+                  } catch (ArrayIndexOutOfBoundsException | NumberFormatException e)
                   {
-                     System.out.println("Error: Index is out of bounds.\nAccount does not exist");
-
-
-                  }
+                     System.out.print("Error: Index is out of bounds.\nAccount does not exist");
+                  }break;
 
                }while (!stats) ;
                if (stats) {
@@ -141,6 +145,7 @@ static Scanner scany = new Scanner(System.in);
                      System.out.print("2 - Make a payment\n");
                      System.out.print("3 - Display balance \n");
                      System.out.print("4 - Display details \n");
+                     System.out.print("5 - Change Discount For Business only\n");
                      System.out.print("Press 0 to exit to main menu. \n");
                      System.out.print("**********************************\n");
 
@@ -162,7 +167,7 @@ static Scanner scany = new Scanner(System.in);
                               System.out.println(myarray.getCurrent(index).DisplayBalance());
 
                            } catch (IndexOutOfBoundsException e) {
-                              System.out.println("Error: Please enter a valid value");
+                              System.out.print("Error: Please enter a valid value");
                               break;
 
                            }
@@ -173,15 +178,21 @@ static Scanner scany = new Scanner(System.in);
 
                         case 2: {
                            try {
+
                               double PaymentAmount = Double.parseDouble(gettext("please enter the amount you paid.\n"));
 
                               char[] bus = Arrays.toString(new int[]{myarray.getCurrent(index).getAccRefNo()}).toCharArray();
-                              char first = bus[0];
+                              char first = bus[1];
+                              System.out.println(first);
 
-                              if (first == 2) {
-                                 myarray.getCurrent(index).Payment(PaymentAmount);
-                              } else {
 
+
+                              if (first == '2')
+                              {
+                                 myarray.getCurrent(index).getDiscount(PaymentAmount);
+                                 myarray.getCurrent(index).Payment(PaymentAmount-myarray.getCurrent(index).getDiscount(PaymentAmount));
+                              } else if (first == '1')
+                              {
                                  myarray.getCurrent(index).Payment(PaymentAmount);
                               }
 
@@ -202,13 +213,30 @@ static Scanner scany = new Scanner(System.in);
 
                         case 4: {
                            System.out.println("**********************");
-                           System.out.println(myarray.getCurrent(index).AccDetails());
+                           System.out.println(myarray.getCurrent(index).ToString());
                         }
                         break;
+
+                        case 5:
+                        {
+                           char[] bus = Arrays.toString(new int[]{myarray.getCurrent(index).getAccRefNo()}).toCharArray();
+                           char first = bus[1];
+                           System.out.println(first);
+                           if (first == '2')
+                           {
+                              System.out.println("**********************");
+                              double NewDiscount = Double.parseDouble(gettext("Please enter your new Discount"));
+                              System.out.println(myarray.getCurrent(index).setdiscount(NewDiscount));
+                              System.out.println("Updated Discount is "+ NewDiscount);
+                           } else if (first == '1')
+                           {
+                              System.out.println("**********************");
+                              System.out.println("Please only use with business accounts");
+                           }
+                        }break;
                         default:
                            if ((choice3 < 0) || (choice3 > 4))
                               System.out.println("Selection invalid");
-
 
                      }
                   } while (choice3 != 0);
