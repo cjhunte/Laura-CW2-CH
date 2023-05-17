@@ -11,7 +11,7 @@ public class Testaccounts
 {
 static Scanner scany = new Scanner(System.in);
 static Scanner numScany = new Scanner(System.in);
-   static Scanner Dscan = new Scanner(System.in);
+static Scanner Dscan = new Scanner(System.in);
 
    public static boolean isNumeric(String strNum) {
       if (strNum == null)
@@ -52,6 +52,8 @@ static Scanner numScany = new Scanner(System.in);
       return Dscan.nextDouble();//takes a string value and stores it as whatever value is declared
 
    }
+
+
    public static void main(String[]args)
    {
       String Newname, nAddress ;
@@ -66,7 +68,9 @@ static Scanner numScany = new Scanner(System.in);
 
 
             do//do loop for the whole program and the main menu meaning the user cannot exit until they have confirmed it.
-         {
+
+            {
+
          System.out.print("************************************\n");//prints a message to the user
 
          System.out.print("1 - create a new account\n");//prints a message to the user
@@ -75,8 +79,6 @@ static Scanner numScany = new Scanner(System.in);
          System.out.print("************************************\n");//prints a message to the user
 
          choice = (getnumber("please select a choice from the menu\n"));//takes user input for the first menu as choice.
-
-
 
 
          switch (choice)///this sets up the main option's menu.
@@ -131,7 +133,7 @@ static Scanner numScany = new Scanner(System.in);
 
                      default:
                         if (choice2 < 0 || choice2 > 2 || choice == 3) {//if the choice is more than 2 or less than 0 print the selection is invalid
-                           System.out.println("Selection invalid");
+                           System.out.println("Selection invalid");//print text to the user
                         }
 
 
@@ -161,23 +163,24 @@ static Scanner numScany = new Scanner(System.in);
                      System.out.print("*************************************************************************\n");//print text to the user
 
 
-                     int AccRefSearch = Integer.parseInt(scany.next());
+                     int AccRefSearch = Integer.parseInt(scany.next());//takes the value to be used in the array search.
 
-                     if(myarray.customerAccountlist.size() > 0)
+                     if(myarray.customerAccountlist.size() > 0)//if the array is empty prints and error to the user.
                      {
 
 
 
-                        for (int i = 0; i < myarray.Getaccountsamount(); i++)
+                        for (int i = 0; i < myarray.Getaccountsamount(); i++)//searches the arrays elements until an account is found.
                         {
-                           if (myarray.getCurrent(i).getAccRefNo() == AccRefSearch)
+                           if (myarray.getCurrent(i).getAccRefNo() == AccRefSearch)//if the search finds a matching account continue.
                            {
-                              System.out.println(myarray.getCurrent(i).ToString());
-                              stats = true;
-                              index = i;
-                           }else {
+                              System.out.println(myarray.getCurrent(i).ToString());//prints the users details
+                              stats = true;//sets the value that runs our do loop to the exit value.
+                              index = i;//holds the position in the array as index
+                           }else //if the search fails then account is not found
+                           {
                               System.out.print("Account not in array\n");//print text to the user
-
+                              break;
                            }
                         }
                      }
@@ -186,16 +189,18 @@ static Scanner numScany = new Scanner(System.in);
                         System.out.print("Error: Cannot search an empty array\n");//print text to the user
 
                      }break;
-                  } catch (ArrayIndexOutOfBoundsException | NumberFormatException exception)
+                  } catch (ArrayIndexOutOfBoundsException | NumberFormatException exception)//handles all other search related errors.
                   {
                      System.out.println("Error: Index is out of bounds or you need to try\n starting with 1XXX or 2XXX and fill in your details");//print text to the user
 
                   }break;
 
-               }while (!stats);
-               if (stats) {
+               }while (!stats);//ends the do while statement when stats is true
+               if (stats) //if stats is true continue
+               {
 
-                  do {
+                  do//do the code while the user has not selected 0
+                  {
 
                      System.out.print("**********************************\n");//print text to the user
 
@@ -214,28 +219,32 @@ static Scanner numScany = new Scanner(System.in);
                      System.out.print("**********************************\n");//print text to the user
 
 
-                     choice3 = (getnumber("please select your action for this account\n"));
+                     choice3 = (getnumber("please select your action for this account\n"));//takes the value of the account editing menu
 
 
 
-                     switch (choice3) {
+                     switch (choice3) //starts the account editing menu
+                     {
 
 
-                        case 1: {
-                           try {
+                        case 1://allows the user to enter a sale so money gets added to the account.
+                        {
+                           try //try entering a sale amount and print error if not a double.
+                           {
                               System.out.print("**********************************\n");//print text to the user
 
 
-                              double SaleAmount = (getnumber("Please enter the amount paid to you\n"));
+                              double SaleAmount = (getdouble("Please enter the amount paid to you\n"));//takes a double value for sale amount.
 
-                              myarray.getCurrent(index).RecordSale(SaleAmount);
+                              myarray.getCurrent(index).RecordSale(SaleAmount);//gets the current account and adds the sale amount to the balance.
 
                               System.out.print("**********************************\n");//print text to the user
 
-                              System.out.println(myarray.getCurrent(index).DisplayBalance());
+                              System.out.println(myarray.getCurrent(index).DisplayBalance());//prints the users balance to confirm money was added to the account
 
-                           } catch (IndexOutOfBoundsException e) {
-                              System.out.print("Error: Please enter a valid value");//print text to the user
+                           } catch (TypeNotPresentException | InputMismatchException exception) //catch error if user enters the wrong value in sale amount such as letters.
+                           {
+                              System.out.print("Error: Please enter a valid value\n");//print text to the user
 
                               break;
 
@@ -245,28 +254,28 @@ static Scanner numScany = new Scanner(System.in);
                         break;
 
 
-                        case 2: {
-                           try {
+                        case 2: //allows the user to deduct money for a purchase
+                        {
+                           try //try entering a PaymentAmount and print error if not a double
+                           {
 
-                              double PaymentAmount = (getnumber("please enter the amount you paid.\n"));
+                              double PaymentAmount = (getdouble("please enter the amount you paid.\n"));// takes payment amount and stores it as a double.
 
-                              char[] bus = Arrays.toString(new int[]{myarray.getCurrent(index).getAccRefNo()}).toCharArray();
-                              char first = bus[1];
-                              System.out.println(first);
+                              char[] bus = Arrays.toString(new int[]{myarray.getCurrent(index).getAccRefNo()}).toCharArray();//converts the account reference number into a Char array like this [XXXX]
+                              char first = bus[1];//selects the second element of the character array and stores it as a character
 
-
-
-                              if (first == '2')
+                              if (first == '2')//if the account is business continue
                               {
-                                 myarray.getCurrent(index).getDiscount(PaymentAmount);
-                                 myarray.getCurrent(index).Payment(PaymentAmount-myarray.getCurrent(index).getDiscount(PaymentAmount));
-                              } else if (first == '1')
+                                 myarray.getCurrent(index).getDiscount(PaymentAmount);//gets the discount to be applied
+                                 myarray.getCurrent(index).Payment(PaymentAmount-myarray.getCurrent(index).getDiscount(PaymentAmount));//takes the discounted amount off the balance
+                              } else if (first == '1')//default function for personal accounts
                               {
-                                 myarray.getCurrent(index).Payment(PaymentAmount);
+                                 myarray.getCurrent(index).Payment(PaymentAmount);//takes the payment amount off the balance
                               }
 
-                              System.out.println(myarray.getCurrent(index).DisplayBalance());
-                           } catch (IndexOutOfBoundsException e) {
+                              System.out.println(myarray.getCurrent(index).DisplayBalance());// prints the users balance.
+                           } catch (IndexOutOfBoundsException| TypeNotPresentException | InputMismatchException e) //catch error if user enters the wrong value in Payment amount such as letters.
+                           {
                               System.out.println("Error: Please enter a valid value");//print text to the user
 
                               break;
@@ -278,30 +287,30 @@ static Scanner numScany = new Scanner(System.in);
                         case 3: {
                            System.out.println("**********************");//print text to the user
 
-                           System.out.println(myarray.getCurrent(index).DisplayBalance());
+                           System.out.println(myarray.getCurrent(index).DisplayBalance());// prints the users balance.
                         }
                         break;
 
                         case 4: {
                            System.out.println("**********************");//print text to the user
 
-                           System.out.println(myarray.getCurrent(index).ToString());
+                           System.out.println(myarray.getCurrent(index).ToString());//prints the users details.
                         }
                         break;
 
                         case 5:
                         {
-                           char[] bus = Arrays.toString(new int[]{myarray.getCurrent(index).getAccRefNo()}).toCharArray();
-                           char first = bus[1];
+                           char[] bus = Arrays.toString(new int[]{myarray.getCurrent(index).getAccRefNo()}).toCharArray();//converts the account reference number into a Char array like this [XXXX]
+                           char first = bus[1];//selects the second element of the character array and stores it as a character
 
-                           if (first == '2')
+                           if (first == '2')//if business enter new discount
                            {
                               System.out.println("**********************");//print text to the user
 
-                              double NewDiscount = (getdouble("Please enter your new Discount\n"));
+                              double NewDiscount = (getdouble("Please enter your new Discount\n"));//print text to the user and stores new discount as a double
 
-                              System.out.println("Updated Discount is "+ NewDiscount+(myarray.getCurrent(index).setdiscount(NewDiscount)));
-                           } else if (first == '1')
+                              System.out.println("Updated Discount is "+ NewDiscount+(myarray.getCurrent(index).setdiscount(NewDiscount)));//sets the discount to new discount
+                           } else if (first == '1')//if personal print error and exit to menu
                            {
                               System.out.println("**********************");//print text to the user
 
@@ -310,12 +319,12 @@ static Scanner numScany = new Scanner(System.in);
                            }
                         }break;
                         default:
-                           if ((choice3 < 0) || (choice3 >=5))
+                           if ((choice3 < 0) || (choice3 >=5))//if edit menu is not within range print error
                               System.out.println("Selection invalid");//print text to the user
 
 
                      }
-                  } while (choice3 != 0);
+                  } while (choice3 != 0);//while the user has not selected exit menu loop menu
                }
 
 
@@ -326,7 +335,7 @@ static Scanner numScany = new Scanner(System.in);
 
 
             default:
-               if ((choice < 0) || (choice >= 2))
+               if ((choice < 0) || (choice >= 2))//if edit menu is not within range print error
                   System.out.println("Selection invalid");//print text to the user
 
 
@@ -335,7 +344,9 @@ static Scanner numScany = new Scanner(System.in);
          }
 
 
-      }while (0 != choice) ;
+
+      }while (0 != choice) ;//while the user has not selected exit program loop program
+
 
    }
 }
