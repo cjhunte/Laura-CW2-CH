@@ -94,8 +94,10 @@ static Scanner numScany = new Scanner(System.in);
 
                   choice2 = (getnumber("please select a choice from the menu\n"));//takes user input for the first menu as choice.
 
-                  switch (choice2) {
-                     case 1: {
+                  switch (choice2) //switch statement for the second menu of account creation choose business or personal
+                  {
+                     case 1: //personal account option
+                     {
 
                         Newname = gettext("Customer name\n");//uses the gettext method to set the new customer name.
 
@@ -109,7 +111,8 @@ static Scanner numScany = new Scanner(System.in);
 
                      }
                      break;
-                     case 2: {
+                     case 2: //business account option.
+                     {
 
                         Newname = gettext("Customer name\n");//uses the gettext method to set the new customer name.
 
