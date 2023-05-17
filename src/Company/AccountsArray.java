@@ -28,7 +28,7 @@ public class AccountsArray
     // Add Property object to the array
     protected void insertAcc(CustomerAccounts newacc) {
        this.customerAccountlist.add(newacc);
-       System.out.println(newacc.ToString() + "The account has been Added"+newacc.getstatus());
+       System.out.println(newacc.ToString() + " and the account has been Added"+newacc.getstatus());
     }//insert property
 
     // Remove Property object from the array
@@ -45,17 +45,17 @@ public class AccountsArray
 
     // Return index position of property or number = -1 if not found
     protected int findAccByNumber(int AccRefNo) {
-       boolean found = false;
-       int index = 0, position = -1;
+       boolean  stats = false;
+       int i = 0, index = -1;
        // Keep checking until the street is found or all properties have been checked
        do {
           // Check if the street at the index position equals the street passed as the parameter
-          if (customerAccountlist.get(index).equals(AccRefNo)) {
-             found = true;
-             position = index;
+          if (customerAccountlist.get(i).equals(AccRefNo)) {
+              stats = true;
+             index = i;
           }
-          index++;
-       } while ((!found) && (index < customerAccountlist.size()));
+          i++;
+       } while ((! stats) && (i < customerAccountlist.size()));
        // Return the index position of the property with the required street (or -1 if not found)
        return AccRefNo;
     }//findPropertyByStreet

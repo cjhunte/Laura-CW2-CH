@@ -21,7 +21,7 @@ public class PersonalCustomerAccounts extends CustomerAccounts
    @Override
    protected String getstatus()
    {
-      return ("\n to Personal Accounts");
+      return ("\nTo Personal Accounts");
    }
 
 
