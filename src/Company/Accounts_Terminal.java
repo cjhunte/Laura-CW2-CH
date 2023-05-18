@@ -1,14 +1,12 @@
 package Company;
 
-import java.awt.*;
-import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 
-public class Testaccounts
+public class Accounts_Terminal
 {
 static Scanner scany = new Scanner(System.in);
 static Scanner numScany = new Scanner(System.in);
