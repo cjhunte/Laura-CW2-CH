@@ -33,17 +33,30 @@ static Scanner Dscan = new Scanner(System.in);
 
    public static int getnumber(String message2)//stores the message for later use to be overridden
    {
+      String doe;
       System.out.print(message2);//prints the message to ask for input
+      doe = numScany.nextLine();
+      int user = 0;
+      try
+      {
+         user = Integer.parseInt(doe);
+      } catch (IndexOutOfBoundsException | TypeNotPresentException |
+               InputMismatchException |
+               IllegalArgumentException e) //catch error if user enters the wrong value in Payment amount such as letters.
+      {
+         System.out.println("Error: Please enter a numerical value");//print text to the user
 
-
-      return numScany.nextInt();//takes a integer value and stores it as whatever value is declared
+      }
+      return user;//takes a string value and stores it as whatever value is declared
 
    }
    public static double getdouble(String message3)//stores the message for later use to be overridden
    {
+      String doe;
       System.out.print(message3);//prints the message to ask for input
-
-      return Dscan.nextDouble();//takes a string value and stores it as whatever value is declared
+      doe = Dscan.nextLine();
+      Double user = Double.parseDouble(doe);
+      return user;//takes a string value and stores it as whatever value is declared
 
    }
 
@@ -66,16 +79,17 @@ static Scanner Dscan = new Scanner(System.in);
 
             {
 
+do
+{
+   System.out.print("************************************\n");//prints a message to the user
 
-                  System.out.print("************************************\n");//prints a message to the user
+   System.out.print("1 - create a new account\n");//prints a message to the user
+   System.out.print("2 - search for an existing account\n");//prints a message to the user
+   System.out.print("-1 - To Exit program.\n");//prints a message to the user
+   System.out.print("************************************\n");//prints a message to the user
 
-                  System.out.print("1 - create a new account\n");//prints a message to the user
-                  System.out.print("2 - search for an existing account\n");//prints a message to the user
-                  System.out.print("-1 - To Exit program.\n");//prints a message to the user
-                  System.out.print("************************************\n");//prints a message to the user
-
-                  choice = (getnumber("please select a choice from the menu\n"));//takes user input for the first menu as choice.
-
+   choice = (getnumber("please select a choice from the menu\n"));//takes user input for the first menu as choice.
+}while (choice != 1 && choice != 2);
 
                switch (choice)///this sets up the main option's menu.
                {
@@ -129,7 +143,7 @@ static Scanner Dscan = new Scanner(System.in);
 
 
                            default:
-                              if (choice2 < 0 || choice2 > 2 || choice == 3)
+                              if (choice2 < 0 || choice2 > 2 || choice2 == 3 )
                               {//if the choice is more than 2 or less than 0 print the selection is invalid
                                  System.out.println("Selection invalid");//print text to the user
                               }
@@ -189,7 +203,7 @@ static Scanner Dscan = new Scanner(System.in);
                         } catch (ArrayIndexOutOfBoundsException |
                                  NumberFormatException exception)//handles all other search related errors.
                         {
-                           System.out.println("Error: Index is out of bounds or you need to try\n starting with 1XXX or 2XXX and fill in your details");//print text to the user
+                           System.out.println("Error: Index is out of bounds or you need to try\nStarting with 1XXX or 2XXX and fill in your details");//print text to the user
 
                         }
                         break;
@@ -226,36 +240,44 @@ static Scanner Dscan = new Scanner(System.in);
 
 
                               case 1://allows the user to enter a sale so money gets added to the account.
-                              {
-                                 try //try entering a sale amount and print error if not a double.
+                              {boolean isvalidprice;
+                                 do
                                  {
-                                    System.out.print("**********************************\n");//print text to the user
 
 
-                                    double SaleAmount = (getdouble("Please enter the amount paid to you\n"));//takes a double value for sale amount.
-
-                                    if (SaleAmount<0)
+                                       System.out.print("**********************************\n");//print text to the user
+                                    try //try entering a sale amount and print error if not a double.
                                     {
-                                       System.out.print("please enter a positive number or make a payment\n");
+                                       double SaleAmount = (getdouble("Please enter the amount paid to you\n"));//takes a double value for sale amount.
+
+                                       if (SaleAmount < 0)
+                                       {
+                                          System.out.print("please enter a positive number or make a payment\n");
+                                          isvalidprice = false;
+                                          break;
+                                       }
+                                       else
+                                       {
+                                       myarray.getCurrent(index).RecordSale(SaleAmount);//gets the current account and adds the sale amount to the balance.
+
+                                       System.out.print("**********************************\n");//print text to the user
+
+                                       System.out.println(myarray.getCurrent(index).DisplayBalance());//prints the users balance to confirm money was added to the account
+
+                                          isvalidprice = true;
+                                          break;
+                                       }
+                                    } catch (TypeNotPresentException |
+                                             InputMismatchException | IllegalArgumentException exception) //catch error if user enters the wrong value in sale amount such as letters.
+                                    {
+                                       System.out.print("Error: Please enter a valid value\n");//print text to the user
+                                       isvalidprice = false;
                                        break;
                                     }
-                                    myarray.getCurrent(index).RecordSale(SaleAmount);//gets the current account and adds the sale amount to the balance.
-
-                                    System.out.print("**********************************\n");//print text to the user
-
-                                    System.out.println(myarray.getCurrent(index).DisplayBalance());//prints the users balance to confirm money was added to the account
-
-                                 } catch (TypeNotPresentException |
-                                          InputMismatchException exception) //catch error if user enters the wrong value in sale amount such as letters.
-                                 {
-                                    System.out.print("Error: Please enter a valid value\n");//print text to the user
-
-                                    break;
-
-                                 }
-
+                                 }while(!isvalidprice);
                               }
-                              break;
+
+
 
 
                               case 2: //allows the user to deduct money for a purchase
@@ -284,14 +306,13 @@ static Scanner Dscan = new Scanner(System.in);
 
                                     System.out.println(myarray.getCurrent(index).DisplayBalance());// prints the users balance.
                                  } catch (IndexOutOfBoundsException | TypeNotPresentException |
-                                          InputMismatchException e) //catch error if user enters the wrong value in Payment amount such as letters.
+                                          IllegalArgumentException e) //catch error if user enters the wrong value in Payment amount such as letters.
                                  {
                                     System.out.println("Error: Please enter a valid value");//print text to the user
 
                                     break;
 
                                  }
-                                 break;
                               }
 
                               case 3:
@@ -321,7 +342,7 @@ static Scanner Dscan = new Scanner(System.in);
                                     System.out.println("**********************");//print text to the user
 
                                     double NewDiscount = (getdouble("Please enter your new Discount\n"));//print text to the user and stores new discount as a double
-                                       if (NewDiscount < 0 || NewDiscount > 1)
+                                       if (NewDiscount < 0 || NewDiscount > 0.9)
                                        {
                                           System.out.print("please enter a positive decimal value between 0.9 and 0\n");
                                           break;
@@ -329,7 +350,7 @@ static Scanner Dscan = new Scanner(System.in);
                                     System.out.println("Updated Discount is " + NewDiscount + (myarray.getCurrent(index).setdiscount(NewDiscount)));//sets the discount to new discount
 
                                     } catch (IndexOutOfBoundsException | TypeNotPresentException |
-                                             InputMismatchException e) //catch error if user enters the wrong value in Payment amount such as letters.
+                                             InputMismatchException|IllegalArgumentException e) //catch error if user enters the wrong value in Payment amount such as letters.
                                     {
                                        System.out.println("Error: Please enter a valid value");//print text to the user
 
@@ -374,7 +395,7 @@ static Scanner Dscan = new Scanner(System.in);
    InputMismatchException e) //catch error if user enters the wrong value in Payment amount such as letters.
    {
       System.out.println("Error: Please enter a valid value");//print text to the user
-      break;
+
    }
    }while (exit != -1);
    }
