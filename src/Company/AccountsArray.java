@@ -35,30 +35,7 @@ public class AccountsArray
     protected void removeAcc(int position) {
        System.out.println(getCurrent(position) + " Removed");
        customerAccountlist.remove(position);
-    }//removeProperty
-
-
-
-    // **************
-    // SEARCH METHODS
-    // **************
-
-    // Return index position of property or number = -1 if not found
-    protected int findAccByNumber(int AccRefNo) {
-       boolean  stats = false;
-       int i = 0, index = -1;
-       // Keep checking until the street is found or all properties have been checked
-       do {
-          // Check if the street at the index position equals the street passed as the parameter
-          if (customerAccountlist.get(i).equals(AccRefNo)) {
-              stats = true;
-             index = i;
-          }
-          i++;
-       } while ((! stats) && (i < customerAccountlist.size()));
-       // Return the index position of the property with the required street (or -1 if not found)
-       return AccRefNo;
-    }//findPropertyByStreet
+    }//removeAcc
 
 
 
