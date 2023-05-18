@@ -1,4 +1,4 @@
-package Company;
+package Company_CW2_CH;
 
 import java.util.Arrays;
 import java.util.InputMismatchException;
@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 
-public class Accounts_Terminal
+public class Company
 {
 static Scanner scany = new Scanner(System.in);
 static Scanner numScany = new Scanner(System.in);

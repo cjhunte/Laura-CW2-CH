@@ -1,4 +1,4 @@
-package Company;
+package Company_CW2_CH;
 
 public class PersonalCustomerAccounts extends CustomerAccounts
 {
